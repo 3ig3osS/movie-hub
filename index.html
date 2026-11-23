@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090a0e">
+  <meta name="description" content="Movie Hub — your personal movie collection">
+  <title>Movie Hub — Premium Cinema</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Movie Hub home"><span class="brand-mark">M</span><span>MOVIE<span class="gold">HUB</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-view="home">หน้าแรก</button>
+      <button class="nav-link" data-view="favorites">รายการโปรด</button>
+      <button class="nav-link" data-view="history">ประวัติ</button>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="ค้นหา" title="ค้นหา">⌕</button>
+      <button class="admin-trigger" id="adminOpen">จัดการคลัง <span>＋</span></button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR PERSONAL CINEMA</div>
+        <h1>เรื่องราวดี ๆ<br><span class="gold">เริ่มต้นที่นี่</span></h1>
+        <p>พื้นที่รวมภาพยนตร์และซีรีส์ที่คุณเลือกไว้ในที่เดียว<br class="desktop-only"> ค้นหา จัดหมวดหมู่ และเข้าชมจากแหล่งต้นทาง</p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="exploreBtn">สำรวจคลังหนัง <span>↗</span></button>
+          <button class="secondary-btn" id="heroAdminBtn">＋ เพิ่มรายการ</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+        <div class="art-screen"><div class="screen-glow"></div><div class="screen-play">▶</div><div class="screen-caption">CINEMA<br><b>AFTER DARK</b></div></div>
+        <div class="art-chip chip-top">CURATED FOR YOU</div><div class="art-chip chip-bottom">✦ PREMIUM COLLECTION</div>
+      </div>
+      <div class="hero-foot"><span>DISCOVER • SAVE • WATCH</span><span>01 / PERSONAL LIBRARY</span></div>
+    </section>
+
+    <section class="stats-row" aria-label="คลังหนัง">
+      <div><strong id="totalCount">0</strong><span>รายการทั้งหมด</span></div>
+      <div><strong id="favoriteCount">0</strong><span>รายการโปรด</span></div>
+      <div><strong id="categoryCount">0</strong><span>หมวดหมู่</span></div>
+      <div class="stats-note">YOUR COLLECTION, YOUR RULES <span>✦</span></div>
+    </section>
+
+    <section class="library-section" id="library">
+      <div class="section-heading">
+        <div><div class="eyebrow">THE COLLECTION</div><h2 id="sectionTitle">สำรวจคลังหนัง</h2><p id="sectionSubtitle">คัดสรรเรื่องที่คุณอยากเก็บไว้รับชม</p></div>
+        <div class="search-wrap" id="searchWrap"><input id="searchInput" type="search" placeholder="ค้นหาชื่อหนัง..." autocomplete="off"><span>⌕</span></div>
+      </div>
+      <div class="filter-row" id="categoryFilters"><button class="filter-chip selected" data-category="ทั้งหมด">ทั้งหมด</button></div>
+      <div class="movie-grid" id="movieGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><div class="empty-icon">✦</div><h3>ยังไม่มีรายการในหมวดนี้</h3><p>เพิ่มหนังผ่านเมนูจัดการคลัง หรือปรับตัวกรองเพื่อดูรายการอื่น</p><button class="secondary-btn" id="emptyAddBtn">＋ เพิ่มรายการแรก</button></div>
+    </section>
+
+    <footer class="footer"><div class="brand small-brand"><span class="brand-mark">M</span><span>MOVIE<span class="gold">HUB</span></span></div><span>PERSONAL CINEMA LIBRARY</span><span>v1.0.0</span></footer>
+  </main>
+
+  <dialog id="adminDialog" class="modal admin-modal">
+    <div class="modal-head"><div><div class="eyebrow">LIBRARY MANAGEMENT</div><h2>จัดการคลังหนัง</h2></div><button class="close-btn" data-close="adminDialog" aria-label="ปิด">×</button></div>
+    <div class="admin-tabs"><button class="tab active" data-tab="manage">รายการหนัง</button><button class="tab" data-tab="add">เพิ่ม / แก้ไข</button><button class="tab" data-tab="data">จัดการ JSON</button></div>
+    <section class="tab-panel" id="tab-manage"><div class="admin-list" id="adminList"></div></section>
+    <section class="tab-panel hidden" id="tab-add">
+      <form id="movieForm">
+        <input type="hidden" id="movieId">
+        <label>ชื่อหนัง / ซีรีส์<input id="movieTitle" required maxlength="100" placeholder="เช่น Interstellar"></label>
+        <div class="form-grid"><label>หมวดหมู่<select id="movieCategory"><option>Action</option><option>Drama</option><option>Sci-Fi</option><option>Comedy</option><option>Horror</option><option>Animation</option><option>Documentary</option><option>Series</option><option>อื่น ๆ</option></select></label><label>ปีที่ฉาย<input id="movieYear" type="number" min="1888" max="2100" placeholder="2026"></label></div>
+        <label>URL ภาพโปสเตอร์<input id="moviePoster" type="url" placeholder="https://..."></label>
+        <label>คำอธิบาย<textarea id="movieDescription" rows="3" maxlength="500" placeholder="เรื่องย่อสั้น ๆ"></textarea></label>
+        <label>ลิงก์เว็บไซต์รับชม<input id="movieUrl" type="url" required placeholder="https://เว็บไซต์ต้นทาง..."></label>
+        <div class="form-note">รองรับเฉพาะลิงก์ HTTPS/HTTP ที่คุณมีสิทธิ์เผยแพร่ รายการจะถูกบันทึกไว้ในเบราว์เซอร์นี้</div>
+        <div class="form-actions"><button type="button" class="secondary-btn" id="cancelEdit">ยกเลิก</button><button class="primary-btn" type="submit">บันทึกรายการ</button></div>
+      </form>
+    </section>
+    <section class="tab-panel hidden" id="tab-data">
+      <div class="data-card"><h3>นำเข้าไฟล์ JSON</h3><p>นำเข้ารายการจากไฟล์ movies.json เพื่อแทนที่คลังปัจจุบัน</p><input type="file" id="jsonImport" accept=".json,application/json"><button class="secondary-btn" id="importBtn">นำเข้า JSON</button></div>
+      <div class="data-card"><h3>ส่งออกคลังหนัง</h3><p>ดาวน์โหลดรายการปัจจุบันเป็นไฟล์ JSON เพื่อนำไปอัปเดตบน GitHub</p><button class="primary-btn" id="exportBtn">↓ Export movies.json</button></div>
+      <div class="data-card warning-card"><h3>คืนค่าเริ่มต้น</h3><p>ลบการเปลี่ยนแปลงในเครื่องและโหลดข้อมูลตัวอย่างจากไฟล์ JSON</p><button class="danger-btn" id="resetBtn">คืนค่าเริ่มต้น</button></div>
+      <p class="form-note">หมายเหตุ: LocalStorage แยกตามเบราว์เซอร์และอุปกรณ์ การ Export เป็นวิธีนำข้อมูลกลับไปเผยแพร่บน GitHub Pages</p>
+    </section>
+  </dialog>
+
+  <dialog id="detailDialog" class="modal detail-modal">
+    <button class="close-btn detail-close" data-close="detailDialog" aria-label="ปิด">×</button>
+    <div id="detailContent"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
