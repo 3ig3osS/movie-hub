@@ -1,1 +1,38 @@
-
+[
+  {
+    "id": "sample-001",
+    "title": "Interstellar",
+    "category": "Sci-Fi",
+    "year": 2014,
+    "poster": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    "description": "การเดินทางข้ามห้วงอวกาศเพื่อค้นหาความหวังของมนุษยชาติ",
+    "url": "https://www.youtube.com/"
+  },
+  {
+    "id": "sample-002",
+    "title": "The Grand Budapest Hotel",
+    "category": "Comedy",
+    "year": 2014,
+    "poster": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
+    "description": "เรื่องราวการผจญภัยสุดแปลกในโรงแรมอันหรูหรา",
+    "url": "https://www.youtube.com/"
+  },
+  {
+    "id": "sample-003",
+    "title": "Arrival",
+    "category": "Drama",
+    "year": 2016,
+    "poster": "https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg",
+    "description": "นักภาษาศาสตร์พยายามสื่อสารกับผู้มาเยือนจากต่างดาว",
+    "url": "https://www.youtube.com/"
+  },
+  {
+    "id": "sample-004",
+    "title": "Planet Earth",
+    "category": "Documentary",
+    "year": 2006,
+    "poster": "",
+    "description": "สารคดีสำรวจธรรมชาติและสิ่งมีชีวิตบนโลก",
+    "url": "https://www.youtube.com/"
+  }
+]
